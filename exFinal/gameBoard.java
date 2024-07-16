@@ -22,6 +22,8 @@ public class gameBoard extends JFrame {
         vehicles = new Vehicle[] {
             new Vehicle(2, 2, 2, true, Color.RED), // Red car
             new Vehicle(0, 0, 3, false, Color.YELLOW),
+            new Vehicle(1, 1, 2, true, Color.YELLOW),
+            new Vehicle(5, 5, 2, false, Color.YELLOW),
             // Add more vehicles here
         };
         addWindowListener(new WindowAdapter() {
