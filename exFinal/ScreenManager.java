@@ -55,6 +55,12 @@ public class ScreenManager {
 		_activeScreen = new LevelsScreen(this);
 		_activeScreen.DrawScreen(this);
 	}
+	public void toGame() {
+		clearScreen();
+		_frame.setTitle("Game Screen");
+		_activeScreen = new GameScreen(this);
+		_activeScreen.DrawScreen(this);
+	}
 
 	public JFrame getFrame() {
 		return this._frame;

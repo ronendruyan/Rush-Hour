@@ -38,6 +38,7 @@ public class gameBoard extends JFrame {
                 drawGame(g);
             }
         };
+        
         panel.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 handleMousePressed(me.getX() / CELL_SIZE, me.getY() / CELL_SIZE);
