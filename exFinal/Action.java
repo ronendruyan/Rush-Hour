@@ -23,6 +23,7 @@ public class Action {
 			((ScreenManager) param).toGame();
 			break;
 		}
+		
 		default:
 			System.out.println("Unexpected value: ");
 		}

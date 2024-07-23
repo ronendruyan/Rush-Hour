@@ -20,11 +20,13 @@ public class ScreenManager {
 	private void initScreen() {
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.setSize(_screenSize);
+		_frame.setResizable(false);
 		_frame.getContentPane().add(_panel);
 		_panel.setLayout(null); // Use absolute positioning
 		_panel.setPreferredSize(new Dimension(_screenSize));
 		_frame.add(_panel);
 		_frame.setVisible(true);
+		
 		toMenu();
 	}
 
@@ -58,7 +60,7 @@ public class ScreenManager {
 	public void toGame() {
 		clearScreen();
 		_frame.setTitle("Game Screen");
-		_activeScreen = new GameScreen(this);
+		_activeScreen = new RushHourGameFrame(this);
 		_activeScreen.DrawScreen(this);
 	}
 
