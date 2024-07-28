@@ -1,5 +1,8 @@
 package exFinal;
 
+//class to draw level selction screen
+//TODO add sending to levels with level number
+//TODO add locked levels
 public class LevelsScreen extends Screen {
 
 	public LevelsScreen(ScreenManager screenManager) {

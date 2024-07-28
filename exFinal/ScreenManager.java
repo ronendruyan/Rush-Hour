@@ -5,11 +5,13 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//class to manage the different screens of the application
 public class ScreenManager {
 	Dimension _screenSize;
 	JFrame _frame;
 	JPanel _panel;
 	Screen _activeScreen;
+
 	public ScreenManager(Dimension screenSize) {
 		_screenSize = screenSize;
 		_frame = new JFrame();
@@ -26,11 +28,9 @@ public class ScreenManager {
 		_panel.setPreferredSize(new Dimension(_screenSize));
 		_frame.add(_panel);
 		_frame.setVisible(true);
-		
+
 		toMenu();
 	}
-
-
 
 	public void clearScreen() {
 		_panel.removeAll();
@@ -43,33 +43,37 @@ public class ScreenManager {
 		_activeScreen = new MenuScreen(this);
 		_activeScreen.DrawScreen(this);
 	}
+
 	public void toRules() {
 		clearScreen();
 		_frame.setTitle("Rules Screen");
 		_activeScreen = new RulesScreen(this);
 		_activeScreen.DrawScreen(this);
-		
+
 	}
 
-	public void toLevels(){
+	public void toLevels() {
 		clearScreen();
 		_frame.setTitle("Levels Screen");
 		_activeScreen = new LevelsScreen(this);
 		_activeScreen.DrawScreen(this);
 	}
+
 	public void toGame() {
 		clearScreen();
 		_frame.setTitle("Game Screen");
-		_activeScreen = new RushHourGameFrame(this);
+		_activeScreen = new RushHourGameFrame(this, new testGameBoard());
 		_activeScreen.DrawScreen(this);
 	}
 
 	public JFrame getFrame() {
 		return this._frame;
 	}
+
 	public JPanel getPanel() {
 		return this._panel;
 	}
+
 	public void redraw() {
 		_frame.revalidate();
 		_frame.repaint();

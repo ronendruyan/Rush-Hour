@@ -1,10 +1,14 @@
 package exFinal;
 
+//class to make adding a action to a button easier by allowing to send functions as parameters.....maybe needs to change
 public class Action {
 	String _action;
+
 	public Action(String action) {
 		_action = action;
 	}
+
+	// perform unique action
 	public void preformAction(Object param) {
 		switch (_action) {
 		case "toMenu": {
@@ -23,7 +27,7 @@ public class Action {
 			((ScreenManager) param).toGame();
 			break;
 		}
-		
+
 		default:
 			System.out.println("Unexpected value: ");
 		}

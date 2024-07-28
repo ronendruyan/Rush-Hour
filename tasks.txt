@@ -1,0 +1,11 @@
+pipeline make diffrent levels
+move validate moves to backend
+
+move grid to center of the screen
+make levels with tracking of number of moves for score
+
+
+
+
+add tracking of completed levels and scores
+styilise everything

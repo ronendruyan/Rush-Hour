@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+//class by matan decrepted
 public class gameBoard extends JFrame {
     private static final int GRID_SIZE = 8;
     private static final int CELL_SIZE = 80;

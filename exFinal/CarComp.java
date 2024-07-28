@@ -9,24 +9,30 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
-
+//class to make drawing cars easier
+//TODO add way to get grapics from car object
 public class CarComp extends ButtonComp{
     private Point initialClick; // Point to store initial click location
     private int gridSize; // Size of each cell in the grid
 
 	
-	public CarComp(String path, Color color, int x, int y, int width, int height,int gridSize,RushHourGameFrame game) {
+	public CarComp(String path, Color color,int gridSize,testGameBoard gameBoard,testCar car) {
 		super(path);
 		_button.setBackground(color); // Set the background color of the car
         _button.setOpaque(true); // Make the car opaque
         _button.setBorderPainted(false); // Remove the border painting
-        _button.setBounds(x, y, width, height); // Set the bounds of the car
+        if(!car.isVertical()) {
+        	_button.setBounds(car.getX()*gridSize, car.getY()*gridSize, car.getSize()*gridSize, gridSize); // Set the bounds of the car        	
+        }
+        else {
+        	_button.setBounds(car.getX()*gridSize, car.getY()*gridSize, gridSize, car.getSize()*gridSize); // Set the bounds of the car        	
+        }
         this.gridSize = gridSize;
-        this.addDragFunctionality(game);
+        this.addDragFunctionality(gameBoard,car);
 	}
     
 	
-	private void addDragFunctionality(RushHourGameFrame game) {
+	private void addDragFunctionality(testGameBoard gameBoard, testCar car) {
         _button.addMouseListener(new MouseAdapter() { // Add mouse listener to the car
             public void mousePressed(MouseEvent e) {
                 initialClick = e.getPoint(); // Store the initial click location
@@ -37,7 +43,7 @@ public class CarComp extends ButtonComp{
             public void mouseReleased(MouseEvent e) {
                 _button.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR)); // Change cursor back to default
                 
-                RushHourGameFrame.checkGameStatus(_button); // Check the game status //TODO make sure the car is red
+                //RushHourGameFrame.checkGameStatus(_button); // Check the game status //TODO make sure the car is red
             }
         });
 
@@ -67,10 +73,11 @@ public class CarComp extends ButtonComp{
                 x = (x / gridSize) * gridSize; // Snap x location to grid
                 y = (y / gridSize) * gridSize; // Snap y location to grid
                 
-                Rectangle rectangle = new Rectangle(x,y,_button.getWidth(),_button.getHeight());
+                //Rectangle rectangle = new Rectangle(x,y,_button.getWidth(),_button.getHeight());
                 // Ensure the car stays within bounds
-                if (x >= 0 && x <= 600 && y >= 0 && y <= 600 && game.isValidMove(rectangle)) {
+                if (x >= 0 && x <= 600 && y >= 0 && y <= 600 && gameBoard.isValidMove(car,x/gridSize,y/gridSize)) {
                     _button.setLocation(x, y); // Set the new location of the car
+                    gameBoard.moveCar(car, x/gridSize, y/gridSize);
                     
                 }
             }
