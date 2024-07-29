@@ -5,6 +5,7 @@ public class testCar {
 	private int x, y; // top-left coordinate of the car
 	private int size;
 	private boolean isVertical;
+	//TODO add path variable optional just colours
 
 	public testCar(int x, int y, int size, boolean isVertical) {
 		this.x = x;

@@ -25,6 +25,7 @@ public class Action {
 		}
 		case "toGame": {
 			((ScreenManager) param).toGame();
+			//((ScreenManager) param.First arg).toGame(param.second arg);
 			break;
 		}
 

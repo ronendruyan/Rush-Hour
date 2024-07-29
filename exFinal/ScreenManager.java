@@ -59,10 +59,14 @@ public class ScreenManager {
 		_activeScreen.DrawScreen(this);
 	}
 
+	//TODO add param
 	public void toGame() {
 		clearScreen();
 		_frame.setTitle("Game Screen");
+		//TODO call levelCreate 
+		//TODO gameBoard = createLevel(param)
 		_activeScreen = new RushHourGameFrame(this, new testGameBoard());
+//		_activeScreen = new RushHourGameFrame(this, gameBoard());
 		_activeScreen.DrawScreen(this);
 	}
 

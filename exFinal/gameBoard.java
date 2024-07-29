@@ -130,6 +130,8 @@ public class gameBoard extends JFrame {
 //            }
 //        }
 //    }
+    //TODO add checkVictory
+    
     private boolean isSpaceFree(int x, int y, Vehicle exclude) {
         for (Vehicle v : vehicles) {
             if (v != exclude && v.occupiesSpace(x, y)) {

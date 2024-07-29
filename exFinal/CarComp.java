@@ -10,7 +10,8 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
 //class to make drawing cars easier
-//TODO add way to get grapics from car object
+//TODO add way to get graphics from car object
+//TODO maybe implements movement
 public class CarComp extends ButtonComp{
     private Point initialClick; // Point to store initial click location
     private int gridSize; // Size of each cell in the grid
