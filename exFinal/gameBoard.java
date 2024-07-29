@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+//class by matan decrepted
 public class gameBoard extends JFrame {
     private static final int GRID_SIZE = 8;
     private static final int CELL_SIZE = 80;
@@ -22,6 +22,8 @@ public class gameBoard extends JFrame {
         vehicles = new Vehicle[] {
             new Vehicle(2, 2, 2, true, Color.RED), // Red car
             new Vehicle(0, 0, 3, false, Color.YELLOW),
+            new Vehicle(1, 1, 2, true, Color.YELLOW),
+            new Vehicle(5, 5, 2, false, Color.YELLOW),
             // Add more vehicles here
         };
         addWindowListener(new WindowAdapter() {
@@ -36,6 +38,7 @@ public class gameBoard extends JFrame {
                 drawGame(g);
             }
         };
+        
         panel.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
                 handleMousePressed(me.getX() / CELL_SIZE, me.getY() / CELL_SIZE);
@@ -127,6 +130,8 @@ public class gameBoard extends JFrame {
 //            }
 //        }
 //    }
+    //TODO add checkVictory
+    
     private boolean isSpaceFree(int x, int y, Vehicle exclude) {
         for (Vehicle v : vehicles) {
             if (v != exclude && v.occupiesSpace(x, y)) {
