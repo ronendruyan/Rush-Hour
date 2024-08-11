@@ -19,7 +19,8 @@ public class LevelsScreen extends Screen {
 		b4.setBounds(300, 200, 100, 50);
 		b5.setBounds(200, 300, 100, 50);
 		//TODO add level num to set action
-		b1.setAction(new Action("toMenu"), screenManager);
+//		b1.setAction(new Action("toGame"), ("1",screenManager));
+		b1.setAction(new Action("toGame"), screenManager);
 		b2.setAction(new Action("toMenu"), screenManager);
 		b3.setAction(new Action("toMenu"), screenManager);
 		b4.setAction(new Action("toMenu"), screenManager);
