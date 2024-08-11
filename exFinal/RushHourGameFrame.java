@@ -27,7 +27,7 @@ public class RushHourGameFrame extends Screen {
 		super();
 
 		
-		ImageIcon bg = new ImageIcon("textures/board3.png");
+		ImageIcon bg = new ImageIcon("textures/board_game.png");
 		JButton boardPanel = new JButton(bg);
 		boardPanel.setContentAreaFilled(false);
 		boardPanel.setBorderPainted(false);
