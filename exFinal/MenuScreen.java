@@ -14,8 +14,8 @@ public class MenuScreen extends Screen {
 		rulesButton.setBounds(200, 150);
 
 		// Add action listeners to the buttons
-		levelsButton.setAction(new Action("toLevels"), screenManager);
-		rulesButton.setAction(new Action("toRules"), screenManager);
+		levelsButton.setAction(new Action("toLevels",0), screenManager);
+		rulesButton.setAction(new Action("toRules",0), screenManager);
 
 		_components.add(rulesButton.getButton());
 		_components.add(levelsButton.getButton());

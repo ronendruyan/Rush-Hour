@@ -46,29 +46,30 @@ public class RushHourGameFrame extends Screen {
 
 		// TODO add level init level change path to car.path
 		for (testCar car : gameBoard.getCars()) {
+			System.out.println("1");
 			_components.add(new CarComp("path", null, gridSize, gameBoard, car).getButton());
 		}
 
 		// Initialize cars
-		cars = new CarComp[3]; // Initialize cars array
+		//cars = new CarComp[3]; // Initialize cars array
 		// Red car (1x2) starting at (3,0)
-		testCar car0 = new testCar(0, 3, 2, false);
-		cars[0] = new CarComp("car", Color.RED, gridSize, gameBoard, car0); // Create red car button
-		gameBoard.addCar(car0);
+		//testCar car0 = new testCar(0, 3, 2, false);
+		//cars[0] = new CarComp("car", Color.RED, gridSize, gameBoard, car0); // Create red car button
+		//gameBoard.addCar(car0);
 		// Blue car (3x1) starting vertically from (3,2) to (3,5)
-		testCar car1 = new testCar(2, 3, 3, true);
-		cars[1] = new CarComp("car", Color.BLUE, gridSize, gameBoard, car1); // Create blue car button
-		gameBoard.addCar(car1);
+		//testCar car1 = new testCar(2, 3, 3, true);
+		//cars[1] = new CarComp("car", Color.BLUE, gridSize, gameBoard, car1); // Create blue car button
+		//gameBoard.addCar(car1);
 
 		// Another car (1x3) starting horizontally from (2,3) to (5,3)
-		testCar car2 = new testCar(3, 2, 3, false);
-		cars[2] = new CarComp("Other Car", Color.ORANGE, gridSize, gameBoard, car2); // Create orange car button
-		gameBoard.addCar(car2);
+		//testCar car2 = new testCar(3, 2, 3, false);
+		//cars[2] = new CarComp("Other Car", Color.ORANGE, gridSize, gameBoard, car2); // Create orange car button
+		//gameBoard.addCar(car2);
 
-		for (CarComp car : cars) { // Loop through cars
-			_components.add(car.getCar()); // Add car to layeredPane at drag layer
-			System.out.println("cars added");
-		}
+		//for (CarComp car : cars) { // Loop through cars
+		//	_components.add(car.getCar()); // Add car to layeredPane at drag layer
+		//	System.out.println("cars added");
+		//}
 		_components.add(boardPanel);
 	}
 
