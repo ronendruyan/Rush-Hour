@@ -10,23 +10,22 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JButton;
 //class to make drawing cars easier
-//TODO add way to get graphics from car object
+//TODO add way to get grapics from car object
 //TODO maybe implements movement
 public class CarComp extends ButtonComp{
     private Point initialClick; // Point to store initial click location
     private int gridSize; // Size of each cell in the grid
+    private Boolean flag = true;
 
 	
 	public CarComp(String path, Color color,int gridSize,testGameBoard gameBoard,testCar car) {
 		super(path);
-		_button.setBackground(color); // Set the background color of the car
-        _button.setOpaque(true); // Make the car opaque
-        _button.setBorderPainted(false); // Remove the border painting
+		//_button.setBackground(color); // Set the background color of the car
         if(!car.isVertical()) {
-        	_button.setBounds(car.getX()*gridSize, car.getY()*gridSize, car.getSize()*gridSize, gridSize); // Set the bounds of the car        	
+        	_button.setBounds(car.getX()*gridSize+gridSize, car.getY()*gridSize+gridSize, car.getSize()*gridSize, gridSize); // Set the bounds of the car        	
         }
         else {
-        	_button.setBounds(car.getX()*gridSize, car.getY()*gridSize, gridSize, car.getSize()*gridSize); // Set the bounds of the car        	
+        	_button.setBounds(car.getX()*gridSize+gridSize, car.getY()*gridSize+gridSize, gridSize, car.getSize()*gridSize); // Set the bounds of the car        	
         }
         this.gridSize = gridSize;
         this.addDragFunctionality(gameBoard,car);
@@ -62,12 +61,11 @@ public class CarComp extends ButtonComp{
                 int y = thisY + yMoved; // Calculate new y location
 
                 // Check if the car can move in the specified direction
-                if (_button.getBackground() == Color.RED) {
-                    y = _button.getLocation().y; // Red car can only move horizontally
-                } else if (_button.getBackground() == Color.BLUE) {
-                    x = _button.getLocation().x; // Blue car can only move vertically
-                } else if (_button.getBackground() == Color.ORANGE) {
-                    y = _button.getLocation().y; // Orange car can only move horizontally
+                if (!car.isVertical()) {
+                    y = _button.getLocation().y;
+                }
+                else{
+                    x = _button.getLocation().x;
                 }
 
                 // Snap to grid
@@ -76,10 +74,17 @@ public class CarComp extends ButtonComp{
                 
                 //Rectangle rectangle = new Rectangle(x,y,_button.getWidth(),_button.getHeight());
                 // Ensure the car stays within bounds
-                if (x >= 0 && x <= 600 && y >= 0 && y <= 600 && gameBoard.isValidMove(car,x/gridSize,y/gridSize)) {
+                if (gameBoard.isValidMove(car,x/gridSize-1,y/gridSize-1)) {
                     _button.setLocation(x, y); // Set the new location of the car
-                    gameBoard.moveCar(car, x/gridSize, y/gridSize);
+                    gameBoard.moveCar(car, x/gridSize-1, y/gridSize-1);
+                    flag = true;
                     
+                }
+                else if(flag){
+                	SoundPlayer s = new SoundPlayer();
+                	s.playSound("textures/car_horn.wav");//in testing
+                	System.out.println("1");
+                	flag=false;
                 }
             }
         });

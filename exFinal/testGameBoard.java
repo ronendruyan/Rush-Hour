@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 //backend class for gameBoard (mostly gpt, need to check if makes sense (it works)
 public class testGameBoard {
-	private static final int SIZE = 7;
+	private static final int SIZE = 6;
 	private int[][] board;
 	ArrayList<testCar> cars;
 
