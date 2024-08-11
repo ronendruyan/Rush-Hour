@@ -1,5 +1,5 @@
-1:7$1,2,2,false,red_car$0,0,3,true,green.png$0,4,3,true,yellow.png$4,0,3,true,orange.png$1,3,2,true,dark_blue.png$3,3,2,false,light_blue.png$5,2,2,false,green.png%
-2:2$1,2,2,false,car4.png$3,4,2,true,car5.png%
-3:1$0,0,2,true,car6.png%
-4:
-5:
+1:8$1,2,2,false,red_car$0,0,2,false,green_car_right$0,1,3,true,purple_truck_down$0,4,2,true,orange_car_up$3,1,3,true,blue_truck_down$2,5,3,false,turquoise_truck_right$4,4,2,false,azure_car_left$5,0,3,true,yellow_truck_down%
+2:8$1,2,2,false,red_car$0,0,3,true,yellow_truck_down$1,0,2,false,turquoise_car_left$3,0,3,true,purple_truck_up$2,3,2,true,orange_car_down$3,3,3,false,blue_truck_left$5,4,2,true,purple_car_down$2,5,3,false,green_truck_right%
+3:8$2,2,2,false,red_car$1,2,2,true,pink_car_up$2,3,2,false,purple_car_left$1,4,3,false,yellow_truck_right$4,3,2,true,green_car_down$4,1,2,true,brown_car_down$3,0,2,false,orange_car_right$2,0,2,true,turquoise_car_down%
+4:10$0,2,2,false,red_car$2,2,2,true,pink_car_down$3,3,2,false,purple_car_left$3,0,3,true,yellow_truck_up$2,4,2,true,green_car_up$1,0,2,false,orange_car_left$1,1,2,false,azure_car_right$0,0,2,true,turquoise_car_up$5,2,3,true,purple_truck_down$3,5,3,false,turquoise_truck_right%
+5:11$0,2,2,false,red_car$2,2,2,true,pink_car_down$3,3,2,false,purple_car_left$3,0,3,false,yellow_truck_right$2,4,2,true,green_car_up$1,1,2,false,orange_car_left$3,1,2,true,azure_car_right$0,0,2,true,turquoise_car_up$5,2,3,true,turquoise_truck_up$3,5,3,false,blue_truck_right$3,4,2,false,black_car_left%
