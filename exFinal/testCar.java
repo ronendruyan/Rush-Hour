@@ -5,13 +5,15 @@ public class testCar {
 	private int x, y; // top-left coordinate of the car
 	private int size;
 	private boolean isVertical;
+	private String path;
 	//TODO add path variable optional just colours
 
-	public testCar(int x, int y, int size, boolean isVertical) {
+	public testCar(int x, int y, int size, boolean isVertical,String path) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
 		this.isVertical = isVertical;
+		this.path = path;
 	}
 
 	public int getX() {
