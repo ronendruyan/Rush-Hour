@@ -18,7 +18,7 @@ public class RulesScreen extends Screen {
 		label.setBounds(100, 100, 300, 100);
 		ButtonComp back = new ButtonComp("back");
 		back.setBounds(300, 300, 100, 50);
-		back.setAction(new Action("toMenu"), screenManager);
+		back.setAction(new Action("toMenu",0), screenManager);
 		_components.add(label);
 		_components.add(back.getButton());
 

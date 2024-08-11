@@ -11,6 +11,7 @@ public class ScreenManager {
 	JFrame _frame;
 	JPanel _panel;
 	Screen _activeScreen;
+	CreateLevelsClass level;
 
 	public ScreenManager(Dimension screenSize) {
 		_screenSize = screenSize;
@@ -60,12 +61,12 @@ public class ScreenManager {
 	}
 
 	//TODO add param
-	public void toGame() {
+	public void toGame(int numOfLevel) {
 		clearScreen();
 		_frame.setTitle("Game Screen");
 		//TODO call levelCreate 
-		//TODO gameBoard = createLevel(param)
-		_activeScreen = new RushHourGameFrame(this, new testGameBoard());
+		level = new CreateLevelsClass("t.txt",numOfLevel);
+		_activeScreen = new RushHourGameFrame(this, level.getGameBoard());
 //		_activeScreen = new RushHourGameFrame(this, gameBoard());
 		_activeScreen.DrawScreen(this);
 	}
