@@ -15,7 +15,9 @@ public class testCar {
 		this.isVertical = isVertical;
 		this.path = path;
 	}
-
+	public String getPath() {
+		return this.path;
+	}
 	public int getX() {
 		return x;
 	}

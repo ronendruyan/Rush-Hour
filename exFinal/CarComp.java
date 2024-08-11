@@ -1,6 +1,5 @@
 package exFinal;
 
-import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -18,8 +17,8 @@ public class CarComp extends ButtonComp{
     private Boolean flag = true;
 
 	
-	public CarComp(String path, Color color,int gridSize,testGameBoard gameBoard,testCar car) {
-		super(path);
+	public CarComp(int gridSize,testGameBoard gameBoard,testCar car) {
+		super(car.getPath());
 		//_button.setBackground(color); // Set the background color of the car
         if(!car.isVertical()) {
         	_button.setBounds(car.getX()*gridSize+gridSize, car.getY()*gridSize+gridSize, car.getSize()*gridSize, gridSize); // Set the bounds of the car        	

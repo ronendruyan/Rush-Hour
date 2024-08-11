@@ -27,7 +27,7 @@ public class RushHourGameFrame extends Screen {
 		super();
 
 		
-		ImageIcon bg = new ImageIcon("textures/boardGame2.png");
+		ImageIcon bg = new ImageIcon("textures/board3.png");
 		JButton boardPanel = new JButton(bg);
 		boardPanel.setContentAreaFilled(false);
 		boardPanel.setBorderPainted(false);
@@ -38,7 +38,7 @@ public class RushHourGameFrame extends Screen {
 		// TODO add level init level change path to car.path
 		for (testCar car : gameBoard.getCars()) {
 			System.out.println("1");
-			_components.add(new CarComp("path", null, gridSize, gameBoard, car).getButton());
+			_components.add(new CarComp(gridSize, gameBoard, car).getButton());
 		}
 		_components.add(boardPanel);
 	}
