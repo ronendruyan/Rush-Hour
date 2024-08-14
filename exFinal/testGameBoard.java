@@ -2,16 +2,17 @@ package exFinal;
 
 import java.util.ArrayList;
 
-//backend class for gameBoard (mostly gpt, need to check if makes sense (it works)
 public class testGameBoard {
-	private static final int SIZE = 6;
-	private int[][] board;
-	ArrayList<testCar> cars;
+    private static final int SIZE = 6;
+    private int[][] board;
+    private ArrayList<testCar> cars;
+    private int moveCount;
 
-	public testGameBoard() {
-		board = new int[SIZE][SIZE];
-		cars = new ArrayList<testCar>();
-	}
+    public testGameBoard() {
+        board = new int[SIZE][SIZE];
+        cars = new ArrayList<testCar>();
+        moveCount = 0;
+    }
 
 	public boolean addCar(testCar car) {
 		cars.add(car);
@@ -61,16 +62,25 @@ public class testGameBoard {
 		}
 	}
 
-	public boolean moveCar(testCar car, int newX, int newY) {
-		if (isValidMove(car, newX, newY)) {
-			removeCarFromBoard(car);
-			car.setX(newX);
-			car.setY(newY);
-			placeCarOnBoard(car);
-			return true;
-		}
-		return false;
-	}
+    public boolean moveCar(testCar car, int newX, int newY) {
+        if (isValidMove(car, newX, newY)) {
+            removeCarFromBoard(car);
+            car.setX(newX);
+            car.setY(newY);
+            placeCarOnBoard(car);
+            moveCount++; // Increment the move counter
+            return true;
+        }
+        return false;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    public void resetMoveCount() {
+        moveCount = 0;
+    }
 
 	public boolean isValidMove(testCar car, int newX, int newY) {
 		int oldX = car.getX();
