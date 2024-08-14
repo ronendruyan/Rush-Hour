@@ -5,6 +5,8 @@ import java.util.ArrayList;
 //backend class for gameBoard (mostly gpt, need to check if makes sense (it works)
 public class testGameBoard {
 	private static final int SIZE = 6;
+	private static final int WINNING_X = 4;
+	private static final int WINNING_Y = 2;
 	private int[][] board;
 	ArrayList<testCar> cars;
 
@@ -89,6 +91,8 @@ public class testGameBoard {
 			car.setX(newX);
 			car.setY(newY);
 			placeItemOnBoard(car);
+			if(car.getPlayerCar() && car.getX()==WINNING_X && car.getY()==WINNING_Y) 
+				RushHourGameFrame.displayWinningMessage();
 			return true;
 		}
 		}

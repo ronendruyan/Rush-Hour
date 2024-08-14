@@ -82,7 +82,7 @@ public class CarComp extends ButtonComp{
                 else if(flag){
                 	SoundPlayer s = new SoundPlayer();
                 	//s.playSound("textures/car_horn.wav");//in testing
-                	System.out.println("1");
+                	//System.out.println("1");
                 	flag=false;
                 }
             }

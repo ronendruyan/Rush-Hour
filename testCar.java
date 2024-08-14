@@ -10,9 +10,10 @@ public class testCar implements Movable {
 	//TODO add getters for SIZE and board
 	testGameBoard gameboard;
 	final int SIZE; 
+	boolean PlayerCar;
 	//TODO add path variable optional just colours
 
-	public testCar(int x, int y, int size, boolean isVertical,String path, testGameBoard board) {
+	public testCar(int x, int y, int size, boolean isVertical,String path, testGameBoard board, boolean PlayerCar) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
@@ -20,6 +21,7 @@ public class testCar implements Movable {
 		this.path = path;
 		this.gameboard = board;
 		this.SIZE = gameboard.getSize();
+		this.PlayerCar = PlayerCar;
 
 	}
 	
@@ -74,6 +76,9 @@ public class testCar implements Movable {
 	}
 	public String getPath() {
 		return this.path;
+	}
+	public boolean getPlayerCar() {
+		return this.PlayerCar;
 	}
 	public int getX() {
 		return x;

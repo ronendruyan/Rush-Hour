@@ -34,16 +34,29 @@ public class RushHourGameFrame extends Screen {
 		boardPanel.setFocusPainted(false);
 		boardPanel.setBounds(0, 0, boardPanel.getIcon().getIconWidth(), boardPanel.getIcon().getIconHeight());
 		this.gameBoard = gameBoard;
-
+		
+		//restart button
+		ButtonComp resetButton = new ButtonComp("Restart");
+		resetButton.setBounds(700, 100, 100, 50);
+		resetButton.setAction(new Action("toGame",1), screenManager);
+		_components.add(resetButton.getButton());
+		//menu button
+		ButtonComp menuButton = new ButtonComp("Menu");
+		menuButton.setBounds(700, 200, 100, 50);
+		menuButton.setAction(new Action("toMenu",0), screenManager);
+		_components.add(menuButton.getButton());
+		
+	
+		
 		// TODO add level init level change path to car.path
 		for (testCar car : gameBoard.getCars()) {
-			System.out.println("1");
+			//System.out.println("1");
 			_components.add(new CarComp(gridSize, gameBoard, car).getButton());
 		}
 		_components.add(boardPanel);
 	}
 
-	private static void displayWinningMessage() {
+		static void displayWinningMessage() {
 		JFrame winningFrame = new JFrame("Game Over"); // Create a new JFrame for the winning message
 		winningFrame.setSize(300, 200); // Set the size of the winning frame
 		winningFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation
@@ -53,7 +66,6 @@ public class RushHourGameFrame extends Screen {
 																								// the winning message
 		messageLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Set the font of the message
 		winningFrame.add(messageLabel); // Add the message label to the winning frame
-
 		winningFrame.setVisible(true); // Make the winning frame visible
 	}
 
