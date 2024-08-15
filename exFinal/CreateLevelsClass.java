@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class CreateLevelsClass {
+	private static final int WINNING_X = 5;
+	private static final int WINNING_Y = 3;
     private String _filePath;
     private int _numOfLevel; 
     private testGameBoard _gameBoard;
@@ -42,8 +44,11 @@ public class CreateLevelsClass {
                             int size = Integer.parseInt(carData[2].trim());
                             boolean isVertical = Boolean.parseBoolean(carData[3].trim());
                             String path = carData[4].trim();
-                            testCar car = new testCar(x, y, size, isVertical, path);
-                            this._gameBoard.addCar(car);
+                        	boolean PlayerCar = false;
+                			if(path.compareTo("red_car")==0)
+                        		PlayerCar = true;
+                            testCar car = new testCar(x, y, size, isVertical, path, _gameBoard, PlayerCar);
+                            this._gameBoard.addItemToBoard(car);
                         }
                     }
                 }

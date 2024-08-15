@@ -73,16 +73,16 @@ public class CarComp extends ButtonComp{
                 
                 //Rectangle rectangle = new Rectangle(x,y,_button.getWidth(),_button.getHeight());
                 // Ensure the car stays within bounds
-                if (gameBoard.isValidMove(car,x/gridSize-1,y/gridSize-1)) {
+                if (car.isValidMove(x/gridSize-1,y/gridSize-1)) {
                     _button.setLocation(x, y); // Set the new location of the car
-                    gameBoard.moveCar(car, x/gridSize-1, y/gridSize-1);
+                    gameBoard.moveBoardItem(car, x/gridSize-1, y/gridSize-1);
                     flag = true;
                     
                 }
                 else if(flag){
                 	SoundPlayer s = new SoundPlayer();
                 	//s.playSound("textures/car_horn.wav");//in testing
-                	System.out.println("1");
+                	//System.out.println("1");
                 	flag=false;
                 }
             }
