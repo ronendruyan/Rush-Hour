@@ -36,19 +36,25 @@ public class RushHourGameFrame extends Screen {
         _components.add(boardPanel);
     }
 
-    private int calculateScore(int userMoves, int optimalMoves) {
-        int score;
-        if (userMoves == optimalMoves) {
-            score = 10;
-        } else if (userMoves <= 2 * optimalMoves) {
-            score = 7;
-        } else if (userMoves <= 3 * optimalMoves) {
-            score = 5;
-        } else {
-            score = 3;
-        }
-        return score;
+private int calculateScore(int userMoves, int optimalMoves) {
+    // If user finishes in optimal moves, give maximum score
+    if (userMoves == optimalMoves) {
+        return 10;
     }
+
+    // Calculate the ratio of user moves to optimal moves
+    double ratio = (double) userMoves / optimalMoves;
+
+    // Linear scaling: if the ratio is 1, score is 10, if ratio is 2, score might be 5, etc.
+    // To fit the score in the range [1, 10], we use the following formula:
+    // score = 10 - (ratio - 1) * 9
+    // This ensures that the score linearly decreases as the ratio increases.
+    
+    int score = (int) Math.max(1, 10 - (ratio - 1) * 9);
+
+    // Ensuring the score does not exceed 10 or fall below 1
+    return Math.min(10, Math.max(1, score));
+}
 
     private void displayWinningMessage(int userMoves, int optimalMoves) {
         int score = calculateScore(userMoves, optimalMoves);
