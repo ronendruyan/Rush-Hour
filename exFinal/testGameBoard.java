@@ -9,10 +9,16 @@ public class testGameBoard {
 	private static final int WINNING_Y = 2;
 	private int[][] board;
 	ArrayList<testCar> cars;
+    private int moveCount;
+    private RushHourGameFrame frame;
+    int numOfLevel;
 
 	public testGameBoard() {
 		board = new int[SIZE][SIZE];
 		cars = new ArrayList<testCar>();
+		moveCount = 0;
+		//this.frame = null;
+		
 	}
 
 	public boolean addItemToBoard(Movable item) {
@@ -79,6 +85,7 @@ public class testGameBoard {
 				board[x + i][y] = 1;
 			}
 		}
+
 		}
 	}
 
@@ -86,13 +93,15 @@ public class testGameBoard {
 		if (item instanceof testCar)
 		{
 			testCar car = (testCar)item;
-		if (car.isValidMove(newX, newY)) {
+		if (car.isValidMove(newX, newY) && !(car.getX() == newX && car.getY() == newY)){
 			removeItemFromBoard(car);
 			car.setX(newX);
 			car.setY(newY);
 			placeItemOnBoard(car);
+	        moveCount++; // Increment the move counter
+	        System.out.println(moveCount);
 			if(car.getPlayerCar() && car.getX()==WINNING_X && car.getY()==WINNING_Y) 
-				RushHourGameFrame.displayWinningMessage();
+				frame.displayWinningMessage(moveCount);
 			return true;
 		}
 		}
@@ -123,16 +132,18 @@ public class testGameBoard {
 		return this.cars;
 	}
 
-	public void printBoard() {
-		for (int i = 0; i < SIZE; i++) {
-			for (int j = 0; j < SIZE; j++) {
-				if (board[i][j] == 0) {
-					System.out.print(". ");
-				} else {
-					System.out.print("C ");
-				}
-			}
-			System.out.println();
-		}
-	}
+    public int getMoveCount() {
+        return moveCount;
+    }
+    
+    public RushHourGameFrame getFrame() {
+    	return this.frame;
+    }
+    public void setFrame(RushHourGameFrame frame) {
+    	this.frame = frame;
+    }
+    public void resetMoveCount() {
+        moveCount = 0;
+    }
+	
 }

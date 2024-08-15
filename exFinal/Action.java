@@ -5,14 +5,14 @@ public class Action {
 	//String _action;
 	//int _num;
 	private Pair<Integer, String> _action;
-	
+	private RushHourGameFrame frame = null;
 	public Action(String action,int num) {
 		//_action = action;
 		_action = new Pair<>(num, action);
 	}
 
 	// perform unique action
-	public void preformAction(Object param) {
+	public RushHourGameFrame  preformAction(Object param) {
 		switch (_action.getValue()) {
 		case "toMenu": {
 			((ScreenManager) param).toMenu();
@@ -35,5 +35,6 @@ public class Action {
 		default:
 			System.out.println("Unexpected value: ");
 		}
+		return frame;
 	}
 }

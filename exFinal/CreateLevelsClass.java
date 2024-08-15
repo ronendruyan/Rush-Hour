@@ -16,11 +16,13 @@ public class CreateLevelsClass {
     private int _numOfLevel; 
     private testGameBoard _gameBoard;
     private CarComp[] cars; // Array to hold car buttons
+   // RushHourGameFrame frame;
 
     public CreateLevelsClass(String filePath,int numOfLevel) {
         this._filePath = filePath;
         this._numOfLevel = numOfLevel;
         this._gameBoard = new testGameBoard();
+        this._gameBoard.numOfLevel=numOfLevel;
         this.getCar(numOfLevel);
     }
 
