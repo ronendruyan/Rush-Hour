@@ -2,28 +2,44 @@ package exFinal;
 
 import java.util.ArrayList;
 
+//backend class for gameBoard (mostly gpt, need to check if makes sense (it works)
 public class testGameBoard {
-    private static final int SIZE = 6;
-    private int[][] board;
-    private ArrayList<testCar> cars;
-    private int moveCount;
+	private static final int SIZE = 6;
+	private static final int WINNING_X = 4;
+	private static final int WINNING_Y = 2;
+	private int[][] board;
+	ArrayList<testCar> cars;
 
-    public testGameBoard() {
-        board = new int[SIZE][SIZE];
-        cars = new ArrayList<testCar>();
-        moveCount = 0;
-    }
+	public testGameBoard() {
+		board = new int[SIZE][SIZE];
+		cars = new ArrayList<testCar>();
+	}
 
-	public boolean addCar(testCar car) {
-		cars.add(car);
-		if (isValidPosition(car)) {
-			placeCarOnBoard(car);
-			return true;
+	public boolean addItemToBoard(Movable item) {
+		if (item instanceof testCar) {
+			testCar car = (testCar) item;
+			cars.add(car);
+			if (isValidPosition(car)) {
+				placeItemOnBoard(car);
+				return true;
+			}
 		}
 		return false;
 	}
+	
+	public int getSize() {
+		return SIZE;
+	}
+	
+	public int[][] getBoard() {
+		return board;
+	}
 
-	private boolean isValidPosition(testCar car) {
+
+	private boolean isValidPosition(Movable item) {
+		if(item instanceof testCar) {
+			testCar car = (testCar) item;
+
 		int x = car.getX();
 		int y = car.getY();
 		int size = car.getSize();
@@ -42,10 +58,13 @@ public class testGameBoard {
 				}
 			}
 		}
+		}
 		return true;
 	}
 
-	private void placeCarOnBoard(testCar car) {
+	private void placeItemOnBoard(Movable item) {
+		if(item instanceof testCar) {
+			testCar car = (testCar) item;
 		int x = car.getX();
 		int y = car.getY();
 		int size = car.getSize();
@@ -60,79 +79,29 @@ public class testGameBoard {
 				board[x + i][y] = 1;
 			}
 		}
+		}
 	}
 
-    public boolean moveCar(testCar car, int newX, int newY) {
-        if (isValidMove(car, newX, newY)) {
-            removeCarFromBoard(car);
-            car.setX(newX);
-            car.setY(newY);
-            placeCarOnBoard(car);
-            moveCount++; // Increment the move counter
-            return true;
-        }
-        return false;
-    }
-
-    public int getMoveCount() {
-        return moveCount;
-    }
-
-    public void resetMoveCount() {
-        moveCount = 0;
-    }
-
-	public boolean isValidMove(testCar car, int newX, int newY) {
-		int oldX = car.getX();
-		int oldY = car.getY();
-		int size = car.getSize();
-		boolean isVertical = car.isVertical();
-
-		// Check if the new position is out of bounds
-		if (isVertical) {
-			if (newX < 0 || newX >= SIZE || newY < 0 || newY + size > SIZE) {
-				return false;
-			}
-		} else {
-			if (newX < 0 || newX + size > SIZE || newY < 0 || newY >= SIZE) {
-				return false;
-			}
+	public boolean moveBoardItem(Movable item, int newX, int newY) {
+		if (item instanceof testCar)
+		{
+			testCar car = (testCar)item;
+		if (car.isValidMove(newX, newY)) {
+			removeItemFromBoard(car);
+			car.setX(newX);
+			car.setY(newY);
+			placeItemOnBoard(car);
+			if(car.getPlayerCar() && car.getX()==WINNING_X && car.getY()==WINNING_Y) 
+				RushHourGameFrame.displayWinningMessage();
+			return true;
 		}
-
-		// Check if the path is clear
-		if (isVertical) {
-			if (newY < oldY) { // Moving up
-				for (int i = newY; i < oldY; i++) {
-					if (board[newX][i] != 0) {
-						return false;
-					}
-				}
-			} else { // Moving down
-				for (int i = oldY + size; i <= newY + size - 1; i++) {
-					if (board[newX][i] != 0) {
-						return false;
-					}
-				}
-			}
-		} else {
-			if (newX < oldX) { // Moving left
-				for (int i = newX; i < oldX; i++) {
-					if (board[i][newY] != 0) {
-						return false;
-					}
-				}
-			} else { // Moving right
-				for (int i = oldX + size; i <= newX + size - 1; i++) {
-					if (board[i][newY] != 0) {
-						return false;
-					}
-				}
-			}
 		}
-		return true;
+		return false;
 	}
 
-	private void removeCarFromBoard(testCar car) {
+	private void removeItemFromBoard(Movable item) {
+		if(item instanceof testCar) {
+			testCar car = (testCar) item;
 		int x = car.getX();
 		int y = car.getY();
 		int size = car.getSize();
@@ -146,6 +115,7 @@ public class testGameBoard {
 			for (int i = 0; i < size; i++) {
 				board[x + i][y] = 0;
 			}
+		}
 		}
 	}
 
