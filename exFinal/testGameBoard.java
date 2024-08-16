@@ -111,13 +111,9 @@ public class testGameBoard {
 		return false;
 	}
 	
-    	public int getMoveCount() {
-        	return moveCount;
-    	}
 
-    	public void resetMoveCount() {
-        	moveCount = 0;
-    	}
+
+
 
 	private void removeItemFromBoard(Movable item) {
 		if(item instanceof testCar) {
