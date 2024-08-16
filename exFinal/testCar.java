@@ -28,6 +28,7 @@ public class testCar implements Movable {
 	public boolean isValidMove( int newX, int newY) {
 		int oldX = this.getX();
 		int oldY = this.getY();
+
 		int size = this.getSize();
 		boolean isVertical = this.isVertical();
 		int[][] board = gameboard.getBoard();

@@ -66,7 +66,7 @@ public class ScreenManager {
 		_frame.setTitle("Game Screen");
 		//TODO call levelCreate 
 		level = new CreateLevelsClass("t.txt",numOfLevel);
-		_activeScreen = new RushHourGameFrame(this, level.getGameBoard());
+		_activeScreen = new RushHourGameFrame(this, level.getGameBoard(),numOfLevel);
 //		_activeScreen = new RushHourGameFrame(this, gameBoard());
 		_activeScreen.DrawScreen(this);
 	}
