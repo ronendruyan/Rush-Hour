@@ -12,7 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 //class to draw the gameFrame
 //TODO pipeline make diffrent levels
 //TODO move validate moves to backend by translating a grid to the screen
@@ -65,71 +66,89 @@ public class RushHourGameFrame extends Screen {
 		_components.add(boardPanel);
 	}
 	private static int calculateScore(int userMoves, int optimalMoves) {
-	    // If user finishes in optimal moves, give maximum score
+	    // If user finishes in optimal moves, give maximum score (100)
 	    if (userMoves == optimalMoves) {
-	        return 10;
+	        return 100;
 	    }
 
 	    // Calculate the ratio of user moves to optimal moves
 	    double ratio = (double) userMoves / optimalMoves;
 
-	    // Linear scaling: if the ratio is 1, score is 10, if ratio is 2, score might be 5, etc.
-	    // To fit the score in the range [1, 10], we use the following formula:
-	    // score = 10 - (ratio - 1) * 9
-	    // This ensures that the score linearly decreases as the ratio increases.
+	    // If the user uses fewer moves than optimal (unlikely, but for safety)
+	    if (ratio < 1.0) {
+	        return 100;
+	    }
 
-	    int score = (int) Math.max(1, 10 - (ratio - 1) * 9);
+	    // Linear scaling: score decreases as the ratio increases
+	    // score = 100 - 90 * (ratio - 1)
+	    double score = 100 - 90 * (ratio - 1);
 
-	    // Ensuring the score does not exceed 10 or fall below 1
-	    return Math.min(10, Math.max(1, score));
+	    // Round the score to the nearest whole number
+	    int roundedScore = (int) Math.round(score);
+
+	    // Ensure the score is within the range [0, 100]
+	    return Math.min(100, Math.max(0, roundedScore));
 	}
+
 		 void plus(){
 			level++;
 		}
 	
-		void displayWinningMessage(int userCount) {
-			
-		//static int tmp = level;
-		if(level!=5)
-		{
-			JFrame winningFrame = new JFrame("Level Completed"); // Create a new JFrame for the winning message
-			winningFrame.setSize(300, 200); // Set the size of the winning frame
-			winningFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Set default close operation
-			winningFrame.setLocationRelativeTo(null); // Center the winning frame on the screen
-			//TODO add return to menu
-			JLabel messageLabel = new JLabel("Good Job - Level Completed", SwingConstants.CENTER); // Create a new JLabel for
-			ButtonComp nextLevelButton = new ButtonComp("Next Level");
-			nextLevelButton.setBounds(50, 100, 75, 50);
-			nextLevelButton.setAction(new Action("toGame",level+1), screenManager);
-			winningFrame.add(nextLevelButton.getButton());
-			ButtonComp menuButton = new ButtonComp("Menu");
-			menuButton.setBounds(150, 100, 75, 50);
-			menuButton.setAction(new Action("toMenu",0), screenManager);
-			winningFrame.add(menuButton.getButton());
-			
-			// the winning message
-			messageLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Set the font of the message
-			winningFrame.add(messageLabel); // Add the message label to the winning frame
-			winningFrame.setVisible(true); // Make the winning frame visible
-			System.out.println("finish");
-			System.out.println(calculateScore(userCount - gameBoard.cars.size(),optimal[level]));
-			System.out.println(userCount);
-			System.out.println("optimal: " + optimal[level]);
-		}
-			
-		else
-		{
-			JFrame winningFrame = new JFrame("Game Over"); // Create a new JFrame for the winning message
-			winningFrame.setSize(300, 200); // Set the size of the winning frame
-			winningFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set default close operation
-			winningFrame.setLocationRelativeTo(null); // Center the winning frame on the screen
-			//TODO add return to menu
-			JLabel messageLabel = new JLabel("Game Finished - You Won!", SwingConstants.CENTER); // Create a new JLabel for
-																								// the winning message
-			messageLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Set the font of the message
-			winningFrame.add(messageLabel); // Add the message label to the winning frame
-			winningFrame.setVisible(true); // Make the winning frame visible
+		 void displayWinningMessage(int userCount) {
+			    JFrame winningFrame = new JFrame(level != 5 ? "Level Completed" : "Game Over");
+			    winningFrame.setSize(400, 300);
+			    winningFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			    winningFrame.setLocationRelativeTo(null);
+			    winningFrame.setLayout(null); // Using null layout for absolute positioning
 
-		}
-	}
+			    String message = level != 5 ? "Good Job - Level Completed" : "Game Finished - You Won!";
+			    JLabel messageLabel = new JLabel(message, SwingConstants.CENTER);
+			    messageLabel.setFont(new Font("Arial", Font.BOLD, 16));
+			    messageLabel.setBounds(50, 20, 300, 30); // Positioning the message label
+			    winningFrame.add(messageLabel);
+
+			    // Action listener to close the frame and perform the button's action
+			    ActionListener closeFrameAction = new ActionListener() {
+			        @Override
+			        public void actionPerformed(ActionEvent e) {
+			            winningFrame.dispose();
+			        }
+			    };
+
+			    // Adding the restart button
+			    ButtonComp restartButton = new ButtonComp("Restart");
+			    restartButton.setBounds(150, 100, 100, 50); // Centered and regular size
+			    restartButton.setAction(new Action("toGame", level), screenManager);
+			    restartButton.getButton().addActionListener(closeFrameAction);
+			    winningFrame.add(restartButton.getButton());
+
+			    ButtonComp menuButton = new ButtonComp("Menu");
+			    menuButton.setBounds(150, 160, 100, 50); // Centered and regular size, below restart button
+			    menuButton.setAction(new Action("toMenu", 0), screenManager);
+			    menuButton.getButton().addActionListener(closeFrameAction);
+			    winningFrame.add(menuButton.getButton());
+
+			    if (level != 5) {
+			        ButtonComp nextLevelButton = new ButtonComp("Next Level");
+			        nextLevelButton.setBounds(150, 220, 100, 50); // Centered and regular size, below other buttons
+			        nextLevelButton.setAction(new Action("toGame", level + 1), screenManager);
+			        nextLevelButton.getButton().addActionListener(closeFrameAction);
+			        winningFrame.add(nextLevelButton.getButton());
+			    }
+
+			    // Calculate and display the final score
+			    int score = calculateScore(userCount, optimal[level]);
+			    JLabel scoreLabel = new JLabel("Final Score: " + score, SwingConstants.CENTER);
+			    scoreLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+			    scoreLabel.setBounds(50, 60, 300, 30); // Positioning the score label
+			    winningFrame.add(scoreLabel);
+
+			    winningFrame.setVisible(true);
+
+			    System.out.println("finish");
+			    System.out.println(calculateScore(userCount, optimal[level]));
+			    System.out.println("userCount: " + userCount);
+			    System.out.println("optimal: " + optimal[level]);
+			}
+
 }
