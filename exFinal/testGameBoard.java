@@ -2,7 +2,6 @@ package exFinal;
 
 import java.util.ArrayList;
 
-//backend class for gameBoard (mostly gpt, need to check if makes sense (it works)
 public class testGameBoard {
 	private static final int SIZE = 6;
 	private static final int WINNING_X = 4;
@@ -21,6 +20,7 @@ public class testGameBoard {
 		//this.frame = null;
 		
 	}
+
 
 	public boolean addItemToBoard(Movable item) {
 		if (item instanceof testCar) {
@@ -100,9 +100,7 @@ public class testGameBoard {
 			car.setX(newX);
 			car.setY(newY);
 			placeItemOnBoard(car);
-	        //moveCount++; // Increment the move counter
-	        
-			System.out.println(moveCount);
+
 			if(car.getPlayerCar() && car.getX()==WINNING_X && car.getY()==WINNING_Y) 
 				frame.displayWinningMessage(moveCount);
 			return true;
@@ -112,6 +110,14 @@ public class testGameBoard {
 		}
 		return false;
 	}
+	
+    	public int getMoveCount() {
+        	return moveCount;
+    	}
+
+    	public void resetMoveCount() {
+        	moveCount = 0;
+    	}
 
 	private void removeItemFromBoard(Movable item) {
 		if(item instanceof testCar) {

@@ -4,9 +4,7 @@ package exFinal;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import javax.swing.ImageIcon;
-// Importing Swing library for GUI components
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -150,5 +148,6 @@ public class RushHourGameFrame extends Screen {
 			    System.out.println("userCount: " + userCount);
 			    System.out.println("optimal: " + optimal[level]);
 			}
+
 
 }
