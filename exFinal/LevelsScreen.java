@@ -8,22 +8,23 @@ public class LevelsScreen extends Screen {
 	public LevelsScreen(ScreenManager screenManager) {
 		super();
 		System.out.println("rulesScreen");
-		ButtonComp b1 = new ButtonComp("1");
-		ButtonComp b2 = new ButtonComp("2");
-		ButtonComp b3 = new ButtonComp("3");
-		ButtonComp b4 = new ButtonComp("4");
-		ButtonComp b5 = new ButtonComp("5");
-		b1.setBounds(100, 100, 100, 50);
-		b2.setBounds(300, 100, 100, 50);
-		b3.setBounds(100, 200, 100, 50);
-		b4.setBounds(300, 200, 100, 50);
-		b5.setBounds(200, 300, 100, 50);
-		//TODO add level num to set action
-		b1.setAction(new Action("toGame",1), screenManager);
-		b2.setAction(new Action("toGame",2), screenManager);
-		b3.setAction(new Action("toGame",3), screenManager);
-		b4.setAction(new Action("toGame",4), screenManager);
-		b5.setAction(new Action("toGame",5), screenManager);
+
+		ButtonComp b1 = new ButtonComp("1_button");
+		ButtonComp b2 = new ButtonComp("2_button");
+		ButtonComp b3 = new ButtonComp("3_button");
+		ButtonComp b4 = new ButtonComp("4_button");
+		ButtonComp b5 = new ButtonComp("5_button");
+		b1.setBounds(250, 450);
+		b2.setBounds(400, 450);
+		b3.setBounds(550, 450);
+		b4.setBounds(250, 600);
+		b5.setBounds(400, 600);
+		// TODO add level num to set action
+		b1.setAction(new Action("toGame", 1), screenManager);
+		b2.setAction(new Action("toGame", 2), screenManager);
+		b3.setAction(new Action("toGame", 3), screenManager);
+		b4.setAction(new Action("toGame", 4), screenManager);
+		b5.setAction(new Action("toGame", 5), screenManager);
 		_components.add(b1.getButton());
 		_components.add(b2.getButton());
 		_components.add(b3.getButton());

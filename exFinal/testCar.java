@@ -6,14 +6,14 @@ public class testCar implements Movable {
 	private int size;
 	private boolean isVertical;
 	private String path;
-	//i changed testGameBoard's SIZE to public
-	//TODO add getters for SIZE and board
+	// i changed testGameBoard's SIZE to public
+	// TODO add getters for SIZE and board
 	testGameBoard gameboard;
-	final int SIZE; 
+	final int SIZE;
 	boolean PlayerCar;
-	//TODO add path variable optional just colours
+	// TODO add path variable optional just colours
 
-	public testCar(int x, int y, int size, boolean isVertical,String path, testGameBoard board, boolean PlayerCar) {
+	public testCar(int x, int y, int size, boolean isVertical, String path, testGameBoard board, boolean PlayerCar) {
 		this.x = x;
 		this.y = y;
 		this.size = size;
@@ -24,8 +24,8 @@ public class testCar implements Movable {
 		this.PlayerCar = PlayerCar;
 
 	}
-	
-	public boolean isValidMove( int newX, int newY) {
+
+	public boolean isValidMove(int newX, int newY) {
 		int oldX = this.getX();
 		int oldY = this.getY();
 
@@ -75,12 +75,15 @@ public class testCar implements Movable {
 		}
 		return true;
 	}
+
 	public String getPath() {
 		return this.path;
 	}
+
 	public boolean getPlayerCar() {
 		return this.PlayerCar;
 	}
+
 	public int getX() {
 		return x;
 	}

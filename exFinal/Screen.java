@@ -9,9 +9,11 @@ import javax.swing.JPanel;
 //TODO make a an interface class(maybe for the movement)
 abstract public class Screen {
 	ArrayList<Component> _components;
-
+	ButtonComp BG;
 	public Screen() {
 		_components = new ArrayList<Component>();
+		BG = new ButtonComp("background");
+		BG.setBounds(0, 0);
 
 	}
 
@@ -20,7 +22,9 @@ abstract public class Screen {
 		for (Component comp : _components) {
 			panel.add(comp);
 		}
+		panel.add(BG.getButton());
 		screenManager.redraw();
+		
 	}
 
 }
