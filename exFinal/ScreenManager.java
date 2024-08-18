@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 
 //class to manage the different screens of the application
 public class ScreenManager {
-	Dimension _screenSize;
-	JFrame _frame;
-	JPanel _panel;
-	Screen _activeScreen;
+	private Dimension _screenSize;
+	private JFrame _frame;
+	private JPanel _panel;
+	private Screen _activeScreen;
 	CreateLevelsClass level;
 
 	public ScreenManager(Dimension screenSize) {

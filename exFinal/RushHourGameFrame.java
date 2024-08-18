@@ -18,11 +18,8 @@ public class RushHourGameFrame extends Screen {
 	private int gridSize = 80; // Size of each cell in the grid
 	private int gridXOffset = 160,gridYOffset=2; // Size of each cell in the grid	
 	private ScreenManager screenManager;
-	testGameBoard gameBoard;
-	// private Pair<int,int> [] optimal ;
-	// 1 =8 2- 25 3 -- 22 4 -28 5 : 48
 	private static int[] optimal = { 0, 8, 25, 22, 28, 48 };
-	int level;
+	private int level;
 
 	public RushHourGameFrame(ScreenManager screenManager, testGameBoard gameBoard, int level) {
 		super();
@@ -33,7 +30,6 @@ public class RushHourGameFrame extends Screen {
 		boardPanel.setBorderPainted(false);
 		boardPanel.setFocusPainted(false);
 		boardPanel.setBounds(160, 0, boardPanel.getIcon().getIconWidth(), boardPanel.getIcon().getIconHeight());
-		this.gameBoard = gameBoard;
 		gameBoard.setFrame(this);
 		this.screenManager = screenManager;
 		this.level = level;
@@ -81,9 +77,7 @@ public class RushHourGameFrame extends Screen {
 		return Math.min(100, Math.max(0, roundedScore));
 	}
 
-	void plus() {
-		level++;
-	}
+
 
 	void displayWinningMessage(int userCount) {
 		JFrame winningFrame = new JFrame(level != 5 ? "Level Completed" : "Game Over");
@@ -133,13 +127,7 @@ public class RushHourGameFrame extends Screen {
 		scoreLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 		scoreLabel.setBounds(50, 60, 300, 30); // Positioning the score label
 		winningFrame.add(scoreLabel);
-
 		winningFrame.setVisible(true);
-
-		System.out.println("finish");
-		System.out.println(calculateScore(userCount, optimal[level]));
-		System.out.println("userCount: " + userCount);
-		System.out.println("optimal: " + optimal[level]);
 	}
 
 }

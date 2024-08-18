@@ -5,19 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class CreateLevelsClass {
-	private static final int WINNING_X = 5;
-	private static final int WINNING_Y = 3;
 	private String _filePath;
-	private int _numOfLevel;
 	private testGameBoard _gameBoard;
-	private CarComp[] cars; // Array to hold car buttons
-	// RushHourGameFrame frame;
 
 	public CreateLevelsClass(String filePath, int numOfLevel) {
 		this._filePath = filePath;
-		this._numOfLevel = numOfLevel;
 		this._gameBoard = new testGameBoard();
-		this._gameBoard.numOfLevel = numOfLevel;
+		this._gameBoard.setNumOfLevel(numOfLevel);
 		this.getCar(numOfLevel);
 	}
 
@@ -41,10 +35,10 @@ public class CreateLevelsClass {
 							int size = Integer.parseInt(carData[2].trim());
 							boolean isVertical = Boolean.parseBoolean(carData[3].trim());
 							String path = carData[4].trim();
-							boolean PlayerCar = false;
+							boolean isPlayerCar = false;
 							if (path.compareTo("red_car") == 0)
-								PlayerCar = true;
-							testCar car = new testCar(x, y, size, isVertical, path, _gameBoard, PlayerCar);
+								isPlayerCar = true;
+							testCar car = new testCar(x, y, size, isVertical, path, _gameBoard, isPlayerCar);
 							this._gameBoard.addItemToBoard(car);
 						}
 					}

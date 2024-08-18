@@ -54,10 +54,7 @@ public class CarComp extends ButtonComp {
 				int newGridX = x / gridSize - 1;
 				int newGridY = y / gridSize - 1;
 
-				// System.out.println(x);
-				// System.out.println(y);
-				// System.out.println(newGridX);
-				// System.out.println(newGridY);
+				
 				// Only count the move if the car has actually moved to a different grid cell
 				if (car.isValidMove(newGridX, newGridY) && (newGridX != initialGridX || newGridY != initialGridY)) {
 					gameBoard.incMoveCount();

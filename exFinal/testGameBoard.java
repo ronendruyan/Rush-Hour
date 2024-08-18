@@ -7,18 +7,15 @@ public class testGameBoard {
 	private static final int WINNING_X = 4;
 	private static final int WINNING_Y = 2;
 	private int[][] board;
-	ArrayList<testCar> cars;
+	 ArrayList<testCar> cars;
 	private int moveCount;
 	private RushHourGameFrame frame;
 	int numOfLevel;
-	boolean valid = false;
 
 	public testGameBoard() {
 		board = new int[SIZE][SIZE];
 		cars = new ArrayList<testCar>();
 		moveCount = 0;
-		// this.frame = null;
-
 	}
 
 	public boolean addItemToBoard(Movable item) {
@@ -92,7 +89,6 @@ public class testGameBoard {
 		if (item instanceof testCar) {
 			testCar car = (testCar) item;
 			if (car.isValidMove(newX, newY) && !(car.getX() == newX && car.getY() == newY)) {
-				valid = true;
 				removeItemFromBoard(car);
 				car.setX(newX);
 				car.setY(newY);
@@ -101,8 +97,7 @@ public class testGameBoard {
 				if (car.getPlayerCar() && car.getX() == WINNING_X && car.getY() == WINNING_Y)
 					frame.displayWinningMessage(moveCount);
 				return true;
-			} else
-				;// valid = false;
+			}
 		}
 		return false;
 	}
@@ -134,7 +129,9 @@ public class testGameBoard {
 	public int getMoveCount() {
 		return moveCount;
 	}
-
+	public void setNumOfLevel(int level) {
+		this.numOfLevel = level;
+	}
 	public void incMoveCount() {
 		moveCount++;
 	}
@@ -147,8 +144,5 @@ public class testGameBoard {
 		this.frame = frame;
 	}
 
-	public void resetMoveCount() {
-		moveCount = 0;
-	}
 
 }
