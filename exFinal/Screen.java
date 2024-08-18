@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 //TODO make a an interface class(maybe for the movement)
 abstract public class Screen {
 	ArrayList<Component> _components;
-	ButtonComp BG;
+	private ButtonComp BG;
 	public Screen() {
 		_components = new ArrayList<Component>();
 		BG = new ButtonComp("background");
